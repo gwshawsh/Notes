@@ -591,3 +591,9 @@ ArrayMap 以时间换取空间，两个数组分别存key 和 value，空间占�
 start = System.nanoTime() 
 TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)+"毫秒"
 ```
+
+####Assert 正确使用方式
+```java
+if(BuildConfig.DEBUG && !(ctx instanceof FragmentActivity))
+      throw new RuntimeException();
+```

@@ -29,7 +29,7 @@ _____
 + #### hahah
 _____
 ### 二、Java
-+ #### Java 非静态内部类会默认持有外部类的引用。
+* ####  Java 非静态内部类会默认持有外部类的引用。
 + #### 正则表达式转义 
 matches 、replaceAll、replaceFirst、split等函数参数为正则表达式，匹配"."等需要转义`"\\\."`。replace不支持正则。、
 + #### StringBuffer 线程安全，效率低。Stringbuilder非多线程，效率高。

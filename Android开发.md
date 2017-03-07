@@ -267,10 +267,7 @@ android:windowSoftInputMode="adjustPan" 键盘就会覆盖屏幕 android:windowS
 	```
 方法一：
 在AndroidMainfest.xml中选择哪个activity，设置windowSoftInputMode属性为adjustUnspecified|stateHidden
-
-例如：
-
-	```java
+```xml
 	<activity android:name=".Main"
 		android:label="@string/app_name"
 		android:windowSoftInputMode="adjustUnspecified|stateHidden"
@@ -280,7 +277,7 @@ android:windowSoftInputMode="adjustPan" 键盘就会覆盖屏幕 android:windowS
 			<category android:name="android.intent.category.LAUNCHER" />
 		</intent-filter>
 	</activity>
-	```
+```
 
 方法二：
 让EditText失去焦点，使用EditText的clearFocus方法
@@ -385,7 +382,7 @@ android:descendantFocusability="blocksDescendants"加到 item 可以解决
 
 
 + #### 启动Activity方法
-	
+		```java
 		public static void actionStart(Context context, String data1, String data2) {
 			Intent intent = new Intent(context, SecondActivity.class);
 			intent.putExtra("param1", data1);
@@ -394,8 +391,10 @@ android:descendantFocusability="blocksDescendants"加到 item 可以解决
 		}
 		
 		SecondActivity.actionStart(FirstActivity.this, "data1", "data2");
-
+	```
+	
 + #### 确认窗口
+	```java
 	private void showDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(
 				SellActivity.this);
@@ -417,7 +416,7 @@ android:descendantFocusability="blocksDescendants"加到 item 可以解决
 		});
 		builder.show();
 	}
-
+```
 
 + #### 一个ListView的item要响应三个点击区域，整体要响应滑动
 	用touchlistener，重写onTouch 可以根据点击位置判断区域。（可能产生适配问题）。
@@ -451,10 +450,13 @@ setTextSize(int size)默认单位sp,可以使用setTextSize(type,size) type Type
 
 
 + #### ListView嵌套ScrollView，重写LisctView 的 onMeasure 方法
+
+	```java
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,MeasureSpec.AT_MOST);
 		super.onMeasure(widthMeasureSpec, expandSpec);
 	}
+	```
 
 + #### Fragment 不会立即 commit
 FragmentTransaction执行commit方法后，并非Fragment事务就立即执行，依赖于系统的处理性能。当然你可以调用executePendingTransactions()方法立即执行。其实这样做通常没有必要，除非Fragment事务依赖于其他现场的工作任务。
@@ -724,7 +726,7 @@ TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)+"毫秒"
 
 	Android中ImageView的scaleType有8个可选项
 
-	1. atrix不对图片进行缩放，对原图从view的左上角绘制图片（图片不变形）；
+	1. atrix不对图片进行缩放，对原图从view的左上角绘制图片（图片不变形）
 
 	2. itXY将图片全部绘制到view中，但是图片会变形；（图片变形，充满view）
 

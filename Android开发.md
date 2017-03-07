@@ -169,8 +169,9 @@ count = count++;
 + #### String 常量池
 ```java
 String s = new String("哈哈哈")
+//不会检查、添加常量池
 ```
-不会检查、添加常量池
+
 
 + #### 集合默认申请长度 10
 为避免多次申请内存，最好指定初始容量
@@ -208,7 +209,7 @@ EditText 启动获得焦点会弹出
 
 + #### ListView setSelection 选中并移动到
 ListView中setSelection，因为是你自己触发的select事件，你自己肯定知道，它默认认为没有必要通知，因此不触发事件，也不通知监听器。只是刷新选中位置，并滚动界面，请求重新布局。
-	很多操作需要等待某个UI组件加载完才能执行，可以用post(Runnable)来实现。
+	很多操作需要等待某个UI组件加载完才能执行，可以用post(Runnable)来实现。在listView加载完成后执行操作。
 	例：
 ```java
     listView.post(new Runnable() {
@@ -218,7 +219,7 @@ ListView中setSelection，因为是你自己触发的select事件，你自己肯
 				}
 			});
 ```
-在listView加载完成后执行操作。
+
 
 
 + #### Padding与margin的区别。
@@ -265,36 +266,36 @@ android:windowSoftInputMode="adjustPan" 键盘就会覆盖屏幕 android:windowS
 			manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 		}
 	```
-方法一：
-在AndroidMainfest.xml中选择哪个activity，设置windowSoftInputMode属性为adjustUnspecified|stateHidden
-```xml
-	<activity android:name=".Main"
-		android:label="@string/app_name"
-		android:windowSoftInputMode="adjustUnspecified|stateHidden"
-		android:configChanges="orientation|keyboardHidden">
-		<intent-filter>
-			<action android:name="android.intent.action.MAIN" />
-			<category android:name="android.intent.category.LAUNCHER" />
-		</intent-filter>
-	</activity>
-```
+		方法一：
+		在AndroidMainfest.xml中选择哪个activity，设置windowSoftInputMode属性为adjustUnspecified|stateHidden
+		```xml
+			<activity android:name=".Main"
+				android:label="@string/app_name"
+				android:windowSoftInputMode="adjustUnspecified|stateHidden"
+				android:configChanges="orientation|keyboardHidden">
+				<intent-filter>
+					<action android:name="android.intent.action.MAIN" />
+					<category android:name="android.intent.category.LAUNCHER" />
+				</intent-filter>
+			</activity>
+		```
 
-方法二：
-让EditText失去焦点，使用EditText的clearFocus方法
-例如：EditText edit=(EditText)findViewById(R.id.edit);
-edit.clearFocus();
+		方法二：
+		让EditText失去焦点，使用EditText的clearFocus方法
+		例如：EditText edit=(EditText)findViewById(R.id.edit);
+		edit.clearFocus();
 
-方法三：
-强制隐藏Android输入法窗口
-例如：EditText edit=(EditText)findViewById(R.id.edit);
-InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-imm.hideSoftInputFromWindow(edit.getWindowToken(),0);
+		方法三：
+		强制隐藏Android输入法窗口
+		例如：EditText edit=(EditText)findViewById(R.id.edit);
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(edit.getWindowToken(),0);
 
-2.EditText始终不弹出软件键盘
-例：EditText edit=(EditText)findViewById(R.id.edit);
-edit.setInputType(InputType.TYPE_NULL);
+		2.EditText始终不弹出软件键盘
+		例：EditText edit=(EditText)findViewById(R.id.edit);
+		edit.setInputType(InputType.TYPE_NULL);
 
-以上都会导致点击时输入法闪动，终极方法Edittext.setInputType(InputType.NULL),这样会彻底禁用输入法，但是也会屏蔽输入类型设置 NUMBER、TEXT都不起作用。如果是自定义键盘输入的话可以用正则匹配。
+		以上都会导致点击时输入法闪动，终极方法Edittext.setInputType(InputType.NULL),这样会彻底禁用输入法，但是也会屏蔽输入类型设置 NUMBER、TEXT都不起作用。如果是自定义键盘输入的话可以用正则匹配。
 	
 
 + #### BigDecimal 的 add 函数。 

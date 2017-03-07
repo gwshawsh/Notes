@@ -506,8 +506,6 @@ Activity的 theme 是透明（android:windowIsTranslucent）时，从其他栈Ac
 	app:left_text = "全部交易"
 	/> 
 	```
-```java
-
 
 	```java
 		TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.IconText);

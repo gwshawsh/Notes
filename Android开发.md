@@ -19,14 +19,14 @@ _____
 
 + #### 手机号
 
-```java
-    public static boolean isMobileNO(String mobiles) {
-        Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\d])|(18[0-9]))\\d{8}$");
-        Matcher m = p.matcher(mobiles);
-        return m.matches();
-        }
+	```java
+		public static boolean isMobileNO(String mobiles) {
+			Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\d])|(18[0-9]))\\d{8}$");
+			Matcher m = p.matcher(mobiles);
+			return m.matches();
+			}
 
-```
+	```
 
 _____
 

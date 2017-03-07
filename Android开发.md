@@ -188,13 +188,14 @@ subList返回list的视图后，不能对list再进行修改，会报ConcurrentM
 
 + #### 垃圾回收
 
-##### （一）对象是否“已死”
-1. 引用计数
-2. 可达性
-##### （二）垃圾收集算法
-1. 标记-清楚
-2. 复制
-3. 标记-整理
+	##### （一）对象是否“已死”
+	1. 引用计数
+	2. 可达性
+
+	##### （二）垃圾收集算法
+	1. 标记-清楚
+	2. 复制
+	3. 标记-整理
 
 _____
 ### 三、Android
@@ -682,20 +683,20 @@ _apiService.login(mobile, verifyCode)
 
 
 + #### Android Studio  .arr 文件
-```java 
-①.将aar包复制到libs目录下 
+	```java 
+	①.将aar包复制到libs目录下 
 
-②.配置build.gradle文件：
+	②.配置build.gradle文件：
 
-加入
+	加入
 
-  repositories {
-        flatDir {
-        dirs 'libs'
-    }
+	  repositories {
+			flatDir {
+			dirs 'libs'
+		}
 
-compile(name:'camerascan-1.0', ext:'aar')
-```
+	compile(name:'camerascan-1.0', ext:'aar')
+	```
 
 + #### SparseArray ArrayMap HashMap
 SparseArray 当key 是int时可以避免自动装箱
@@ -709,10 +710,10 @@ TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)+"毫秒"
 
 + #### Assert 正确使用方式
 
-```java
-if(BuildConfig.DEBUG && !(ctx instanceof FragmentActivity))
-      throw new RuntimeException();
-```
+	```java
+	if(BuildConfig.DEBUG && !(ctx instanceof FragmentActivity))
+		  throw new RuntimeException();
+	```
 
 + #### ImageView的scaleType
 

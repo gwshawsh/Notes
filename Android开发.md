@@ -234,7 +234,7 @@ android:windowSoftInputMode="adjustPan" 键盘就会覆盖屏幕 android:windowS
     
 
 + #### Edittext获取焦点隐藏显示输入法、键盘
-`
+
 	```java 
 		private void setViewFocus(View v) {
 				v.setFocusable(true);

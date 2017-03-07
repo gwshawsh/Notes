@@ -350,6 +350,7 @@ android:descendantFocusability="blocksDescendants"加到 item 可以解决
 
 + #### ListView 单条更新
 
+```java
  	private void updateSingleRow(ListView listView, long id){
 		if (listView != null) {                  
 		int start = listView.getFirstVisiblePosition();                  
@@ -361,7 +362,7 @@ android:descendantFocusability="blocksDescendants"加到 item 可以解决
 			} 
 		}                 
 	}
-
+```
 
 + #### ListView 两次快速的notifyDataSetChanged会导致某个item 不刷新问题。详见点击两个item会同时改变背景色问题。用ListView单条更新来解决。
 	View view = mListView.getChildAt(position-mListView.getFirstVisiblePosition());

@@ -33,6 +33,7 @@ _____
 
 * #### 正则表达式转义
 		matches 、replaceAll、replaceFirst、split等函数参数为正则表达式，匹配"."等需要转义`"\\\."`。replace不支持正则。
+		
 + #### StringBuffer 线程安全，效率低。Stringbuilder非多线程，效率高。
 + #### 泛型的限制 
 	1. 在使用 String.class List.class 不能使用泛型形式（List<?>.class 是错误的）

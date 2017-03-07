@@ -722,16 +722,16 @@ TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)+"毫秒"
 
 + #### ImageView的scaleType
 
-Android中ImageView的scaleType有8个可选项
+	Android中ImageView的scaleType有8个可选项
 
-1 matrix不对图片进行缩放，对原图从view的左上角绘制图片（图片不变形）；
+	1. atrix不对图片进行缩放，对原图从view的左上角绘制图片（图片不变形）；
 
-2 fitXY将图片全部绘制到view中，但是图片会变形；（图片变形，充满view）
+	2. itXY将图片全部绘制到view中，但是图片会变形；（图片变形，充满view）
 
-3 fitStart、fitCenter、fitEnd三个属性会选择图片的较长的边为基准对图片进行缩放处理，正因为如此，图片不会完全充满view，不同之处在于图片在view中绘制的锚点不同；（图片不变形，不能充满view）
+	3. itStart、fitCenter、fitEnd三个属性会选择图片的较长的边为基准对图片进行缩放处理，正因为如此，图片不会完全充满view，不同之处在于图片在view中绘制的锚点不同；（图片不变形，不能充满view）
 
-4 center不对图片进行缩放处理，选取view及图片的中心点进行绘制；（图片不变形）
+	4. enter不对图片进行缩放处理，选取view及图片的中心点进行绘制；（图片不变形）
 
-5 centerCrop会保证图片充满view，因此会选取图片中较短的边为基准做缩放处理；（图片不变形，充满view）
+	5. enterCrop会保证图片充满view，因此会选取图片中较短的边为基准做缩放处理；（图片不变形，充满view）
 
-6 centerInside保证图片显示在view中间，当图片大于view时，会选取图片较长的边为基准对图片进行缩小，当图片宽高小于view时，直接将图片显示到view中间。（图片不变形）
+	6. enterInside保证图片显示在view中间，当图片大于view时，会选取图片较长的边为基准对图片进行缩小，当图片宽高小于view时，直接将图片显示到view中间。（图片不变形）

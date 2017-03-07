@@ -477,18 +477,19 @@ Activity的 theme 是透明（android:windowIsTranslucent）时，从其他栈Ac
 2. 资源文件 attrs 中声明 styleable
 3. XML 文件中引用，并声明属性
 4. 构造函数中通过以下代码获取xml中对应属性 `R.styleable.IconText_left_text` （styleable名字 + " _ " + 对应属性名字）
+
 	```java
-	public class TabView extends LinearLayout {       
-	public TabView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		LayoutInflater.from(context).inflate(R.layout.share_topbar_tip, this);
-		TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.IconText);
-		String leftIconTextString = a.getString(R.styleable.IconText_left_text);
-		a.recycle();
-		findControls();
-		addListeners();
-	}
-	}
+		public class TabView extends LinearLayout {       
+		public TabView(Context context, AttributeSet attrs) {
+			super(context, attrs);
+			LayoutInflater.from(context).inflate(R.layout.share_topbar_tip, this);
+			TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.IconText);
+			String leftIconTextString = a.getString(R.styleable.IconText_left_text);
+			a.recycle();
+			findControls();
+			addListeners();
+		}
+		}
 	```
 	```xml
 	<declare-styleable name="IconText">

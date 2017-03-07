@@ -235,48 +235,52 @@ android:windowSoftInputMode="adjustPan" 键盘就会覆盖屏幕 android:windowS
 
 + #### Edittext获取焦点隐藏显示输入法、键盘
 `
-```java 
-    private void setViewFocus(View v) {
-    		v.setFocusable(true);
-    		v.setFocusableInTouchMode(true);
-    		v.requestFocus();
-    		v.requestFocusFromTouch();
-    	}
+	```java 
+		private void setViewFocus(View v) {
+				v.setFocusable(true);
+				v.setFocusableInTouchMode(true);
+				v.requestFocus();
+				v.requestFocusFromTouch();
+			}
 
-	private void openInput(Context context, View editText) {
-		InputMethodManager m = (InputMethodManager) getActivity()
-				.getSystemService(Context.INPUT_METHOD_SERVICE);
-		m.showSoftInput(editText, 0);
-	}
+		private void openInput(Context context, View editText) {
+			InputMethodManager m = (InputMethodManager) getActivity()
+					.getSystemService(Context.INPUT_METHOD_SERVICE);
+			m.showSoftInput(editText, 0);
+		}
 
-	private void closeInput(Context context, View editText) {
-		InputMethodManager manager = (InputMethodManager) getActivity()
-				.getSystemService(Context.INPUT_METHOD_SERVICE);
-		manager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-	}
-    protected void closeInput(View editText) {
-        InputMethodManager manager = (InputMethodManager) 
-                getSystemService(Context.INPUT_METHOD_SERVICE);
-        manager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-    }
-    protected void closeInputMethod() {
-        InputMethodManager manager = (InputMethodManager)
-                getSystemService(Context.INPUT_METHOD_SERVICE);
-        manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-    }
-```
+		private void closeInput(Context context, View editText) {
+			InputMethodManager manager = (InputMethodManager) getActivity()
+					.getSystemService(Context.INPUT_METHOD_SERVICE);
+			manager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+		}
+		protected void closeInput(View editText) {
+			InputMethodManager manager = (InputMethodManager) 
+					getSystemService(Context.INPUT_METHOD_SERVICE);
+			manager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+		}
+		protected void closeInputMethod() {
+			InputMethodManager manager = (InputMethodManager)
+					getSystemService(Context.INPUT_METHOD_SERVICE);
+			manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+		}
+	```
 方法一：
 在AndroidMainfest.xml中选择哪个activity，设置windowSoftInputMode属性为adjustUnspecified|stateHidden
 
-例如：<activity android:name=".Main"
-android:label="@string/app_name"
-android:windowSoftInputMode="adjustUnspecified|stateHidden"
-android:configChanges="orientation|keyboardHidden">
-<intent-filter>
-<action android:name="android.intent.action.MAIN" />
-<category android:name="android.intent.category.LAUNCHER" />
-</intent-filter>
-</activity>
+例如：
+
+	```java
+	<activity android:name=".Main"
+		android:label="@string/app_name"
+		android:windowSoftInputMode="adjustUnspecified|stateHidden"
+		android:configChanges="orientation|keyboardHidden">
+		<intent-filter>
+			<action android:name="android.intent.action.MAIN" />
+			<category android:name="android.intent.category.LAUNCHER" />
+		</intent-filter>
+	</activity>
+	```
 
 方法二：
 让EditText失去焦点，使用EditText的clearFocus方法
@@ -469,42 +473,42 @@ Activity的 theme 是透明（android:windowIsTranslucent）时，从其他栈Ac
 2. 资源文件 attrs 中声明 styleable
 3. XML 文件中引用，并声明属性
 4. 构造函数中通过以下代码获取xml中对应属性 `R.styleable.IconText_left_text` （styleable名字 + " _ " + 对应属性名字）
-```java
-public class TabView extends LinearLayout {       
-public TabView(Context context, AttributeSet attrs) {
-    super(context, attrs);
-    LayoutInflater.from(context).inflate(R.layout.share_topbar_tip, this);
-    TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.IconText);
-    String leftIconTextString = a.getString(R.styleable.IconText_left_text);
-    a.recycle();
-    findControls();
-    addListeners();
-}
-}
-```
-```xml
-<declare-styleable name="IconText">
-    <attr name="left_text" format="string"></attr>
-    <attr name="right_text" format="string"></attr>
-</declare-styleable>
-```
+	```java
+	public class TabView extends LinearLayout {       
+	public TabView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		LayoutInflater.from(context).inflate(R.layout.share_topbar_tip, this);
+		TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.IconText);
+		String leftIconTextString = a.getString(R.styleable.IconText_left_text);
+		a.recycle();
+		findControls();
+		addListeners();
+	}
+	}
+	```
+	```xml
+	<declare-styleable name="IconText">
+		<attr name="left_text" format="string"></attr>
+		<attr name="right_text" format="string"></attr>
+	</declare-styleable>
+	```
 
-```xml
-<com.hisense.pos.xwpos.ui.TabView 
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-app:left_text = "全部交易"
-/> 
-```
+	```xml
+	<com.hisense.pos.xwpos.ui.TabView 
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	app:left_text = "全部交易"
+	/> 
+	```
 ```java
 
 
-```java
-TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.IconText);
-String leftText = a.getString(R.styleable.IconText_left_text);
-a.recycle();
-```
+	```java
+	TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.IconText);
+	String leftText = a.getString(R.styleable.IconText_left_text);
+	a.recycle();
+	```
 
 + #### ImageView 变形
 ImageView的图片最好用src设置，用background设置会导致图片变形始终填充控件，并且设置scaleType无效。
@@ -524,52 +528,52 @@ StringBuffer没有覆盖equals() 和 hashCode()方法，因此，**将StringBuff
 + #### ScrollView 中嵌套 ListView 
 要重写ListView；并且在ListView外层包裹LinearLayout（不包裹，ListView底部显示不全）
 
-```java
-public class ExpandableListViewForScrollView extends ExpandableListView {
-	public ExpandableListViewForScrollView(Context context) {
-		super(context);
+	```java
+	public class ExpandableListViewForScrollView extends ExpandableListView {
+		public ExpandableListViewForScrollView(Context context) {
+			super(context);
+		}
+		public ExpandableListViewForScrollView(Context context, AttributeSet attrs) {
+			super(context, attrs);
+		}
+		public ExpandableListViewForScrollView(Context context, AttributeSet attrs,
+				int defStyle) {
+			super(context, attrs, defStyle);
+		}
+		protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+			int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
+					MeasureSpec.AT_MOST);
+			super.onMeasure(widthMeasureSpec, expandSpec);
+		}
 	}
-	public ExpandableListViewForScrollView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
-	public ExpandableListViewForScrollView(Context context, AttributeSet attrs,
-			int defStyle) {
-		super(context, attrs, defStyle);
-	}
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
-				MeasureSpec.AT_MOST);
-		super.onMeasure(widthMeasureSpec, expandSpec);
-	}
-}
-```
+	```
 
 
-```xml
-<ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="#f0eff4"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp20"
-                >
-            <com.hisense.pos.xwpos.commonui.ExpandableListViewForScrollView
-                android:id="@+id/lb_list_plus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_corner_white"
-                android:paddingLeft="@dimen/dp10"
-                android:paddingRight="@dimen/dp10"
-                android:paddingTop="@dimen/dp5"
-                android:paddingBottom="@dimen/dp5"
-                />
-            </LinearLayout>
-        </ScrollView>
-```
+	```xml
+	<ScrollView
+				android:layout_width="match_parent"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				android:background="#f0eff4"
+				>
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="@dimen/dp20"
+					>
+				<com.hisense.pos.xwpos.commonui.ExpandableListViewForScrollView
+					android:id="@+id/lb_list_plus"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/shape_corner_white"
+					android:paddingLeft="@dimen/dp10"
+					android:paddingRight="@dimen/dp10"
+					android:paddingTop="@dimen/dp5"
+					android:paddingBottom="@dimen/dp5"
+					/>
+				</LinearLayout>
+			</ScrollView>
+	```
 
 + #### fastjson key和属性名不一致
 fastjson的key是根据javabean里面的getter和setter方法来的，不是根据属性名的，所以会出现这个问题，你在属性的get和set方法上面写上标注，说明转成什么就行了比如 @JSONField(name="SOMETHING") 

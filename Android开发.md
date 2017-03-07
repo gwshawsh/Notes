@@ -383,7 +383,7 @@ android:descendantFocusability="blocksDescendants"加到 item 可以解决
 
 
 + #### 启动Activity方法
-		```java
+	```java
 		public static void actionStart(Context context, String data1, String data2) {
 			Intent intent = new Intent(context, SecondActivity.class);
 			intent.putExtra("param1", data1);

@@ -83,16 +83,16 @@ jdk5之后用 `TimeUnit.SECONDS.sleep(1)` 代替 `Thread.sleep(1000)`
 #### final 的 instant variable(实例变量) 没有 default value
 #### public class的名字必须和文件名相同
 #### Java 中的Type
-#### #Type
+##### Type
 它是所有类型的公共接口。包括原始类型、参数化类型、数组类型、类型变量和基本类型。ParameterizedType, TypeVariable, WildcardType,GenericArrayType这四个接口都是它的子接口。
-#### #GenericDeclaration
+##### GenericDeclaration
 这个接口Class、Method、Constructor都有实现，我们就是要用这个接口的getTypeParameters方法，它返回一个TypeVariable[]数组，这个数组里面就是我们定义的类型变量T和K，顺序与我们声明时一样。如果用循环语句将数组打印出来，你会发现只会输出T和K，这可不是我们想要的结果，那么想要获得预期的结果怎么办呢？请继续往下看。
-#### #TypeVariable
+##### TypeVariable
 它表示类型变量。比如T，比如K extends Comparable<? super T> & Serializable，这个接口里面有个getBounds()方法，它用来获得类型变量上限的Type数组，如果没有定义上限，则默认设定上限为Object，请注意TypeVariable是接口，实际得到的是TypeVariableImpl实现类，下面几个接口都一样。
     拿T和K来说明，T没有定义任何上限，所以它就有一个默认上限java.lang.Object，实际跟踪代码的时候你会发现T的bounds属性为空，只有在调用了getBounds()方法后，才会有一个Type[1]数组[class java.lang.Object]。而对于K来说，调用了getBounds方法后，得到的数组是[java.lang.Comparable<? super T>, interface java.io.Serializable]，它们的类型却是不一样的，第1个是ParameterizedType，而第二个是Class
-#### #ParameterizedType
+##### ParameterizedType
 ParameterizedType表示参数化类型，就是上面说的java.lang.Comparable<? super T>，再比如List<T>，List<String>，这些都叫参数化类型。得到Comparable<? super T>之后，再调用getRawType()与getActualTypeArguments()两个方法，就可以得到声明此参数化类型的类(java.lang.Comparable)和实际的类型参数数组([? super T])，而这个? super T又是一个WildcardType类型。
-#### #WildcardType
+##### WildcardType
 它用来描述通配符表达式，上面返回的? super T正好是这个类型。然后调用getUpperBounds()上限和getLowerBounds()下限这两个方法，获得类型变量?的限定类型(上下限)，对于本例的通配符(?)，它的上限为java.lang.Object，下限为T
 通过上面几个接口的分析，可以将Person类的泛型参数都解析出来，那么Person的超类以及实现的接口该怎么处理呢？Class类里面同样在1.5版本加入了getGenericSuperclass()与getGenericInterfaces()两个方法，用于返回带参数化类型的超类与接口。
 #### 自增运算符
@@ -134,10 +134,10 @@ String s = new String("哈哈哈")
 ```
 subList返回list的视图后，不能对list再进行修改，会报ConcurrentModificationException。可以用Collections.unmodifiableList 保护原list
 #### 垃圾回收
-#### #（一）对象是否“已死”
+##### （一）对象是否“已死”
 1. 引用计数
 2. 可达性
-#### #（二）垃圾收集算法
+##### （二）垃圾收集算法
 1. 标记-清楚
 2. 复制
 3. 标记-整理

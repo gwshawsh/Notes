@@ -14,9 +14,9 @@ _____
 
 _____
 
-###一、正则表达式
+### 一、正则表达式
 
-####手机号
+#### 手机号
 ```java
     public static boolean isMobileNO(String mobiles) {
         Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\d])|(18[0-9]))\\d{8}$");
@@ -26,24 +26,25 @@ _____
 
 ```
 
-####hahah
+#### hahah
 _____
-###二、Java
+### 二、Java
 #### Java 非静态内部类会默认持有外部类的引用。
 #### 正则表达式转义 
 matches 、replaceAll、replaceFirst、split等函数参数为正则表达式，匹配"."等需要转义`"\\\."`。replace不支持正则。、
-####  StringBuffer 线程安全，效率低。Stringbuilder非多线程，效率高。
+#### StringBuffer 线程安全，效率低。Stringbuilder非多线程，效率高。
 #### 泛型的限制 
 1. 在使用 String.class List.class 不能使用泛型形式（List<?>.class 是错误的）
 2. 在使用 instanceof 时候只能使用通配泛型（List<?>）  （只能 o instanceof List<?>或者 o instanceof List 而不能 o instanceof List<String>）
 3. 不能创建泛型数组
+
 #### Java printf(n%)  换行
 #### 枚举 避免使用ordinal
 最好添加一个 private final int order 变量，构造函数中赋值，然后获取顺序。
 #### EnumSet.of(...) 创建枚举集合; new EnumMap<Enum,Object>(Enum.class)
 #### Collections.unmodifiableXX() 创建不可改变的集合
-####  java.lang.reflect   Class.newInstance
-####  对象传给print、字符串联操作符（+）、assert、调试器打印 会自动调用toString方法
+#### java.lang.reflect   Class.newInstance
+#### 对象传给print、字符串联操作符（+）、assert、调试器打印 会自动调用toString方法
 #### Java没有可变参数，多个构造函数时可以用 Builder 代替
 #### Java 读取long double 是非原子的
 #### 调用构造函数
@@ -82,27 +83,27 @@ jdk5之后用 `TimeUnit.SECONDS.sleep(1)` 代替 `Thread.sleep(1000)`
 #### final 的 instant variable(实例变量) 没有 default value
 #### public class的名字必须和文件名相同
 #### Java 中的Type
-#####Type
+#### #Type
 它是所有类型的公共接口。包括原始类型、参数化类型、数组类型、类型变量和基本类型。ParameterizedType, TypeVariable, WildcardType,GenericArrayType这四个接口都是它的子接口。
-#####GenericDeclaration
+#### #GenericDeclaration
 这个接口Class、Method、Constructor都有实现，我们就是要用这个接口的getTypeParameters方法，它返回一个TypeVariable[]数组，这个数组里面就是我们定义的类型变量T和K，顺序与我们声明时一样。如果用循环语句将数组打印出来，你会发现只会输出T和K，这可不是我们想要的结果，那么想要获得预期的结果怎么办呢？请继续往下看。
-#####TypeVariable
+#### #TypeVariable
 它表示类型变量。比如T，比如K extends Comparable<? super T> & Serializable，这个接口里面有个getBounds()方法，它用来获得类型变量上限的Type数组，如果没有定义上限，则默认设定上限为Object，请注意TypeVariable是接口，实际得到的是TypeVariableImpl实现类，下面几个接口都一样。
     拿T和K来说明，T没有定义任何上限，所以它就有一个默认上限java.lang.Object，实际跟踪代码的时候你会发现T的bounds属性为空，只有在调用了getBounds()方法后，才会有一个Type[1]数组[class java.lang.Object]。而对于K来说，调用了getBounds方法后，得到的数组是[java.lang.Comparable<? super T>, interface java.io.Serializable]，它们的类型却是不一样的，第1个是ParameterizedType，而第二个是Class
-#####ParameterizedType
+#### #ParameterizedType
 ParameterizedType表示参数化类型，就是上面说的java.lang.Comparable<? super T>，再比如List<T>，List<String>，这些都叫参数化类型。得到Comparable<? super T>之后，再调用getRawType()与getActualTypeArguments()两个方法，就可以得到声明此参数化类型的类(java.lang.Comparable)和实际的类型参数数组([? super T])，而这个? super T又是一个WildcardType类型。
-#####WildcardType
+#### #WildcardType
 它用来描述通配符表达式，上面返回的? super T正好是这个类型。然后调用getUpperBounds()上限和getLowerBounds()下限这两个方法，获得类型变量?的限定类型(上下限)，对于本例的通配符(?)，它的上限为java.lang.Object，下限为T
 通过上面几个接口的分析，可以将Person类的泛型参数都解析出来，那么Person的超类以及实现的接口该怎么处理呢？Class类里面同样在1.5版本加入了getGenericSuperclass()与getGenericInterfaces()两个方法，用于返回带参数化类型的超类与接口。
-####自增运算符
+#### 自增运算符
 ```java
 int count = 0;
 count = count++;
 //count的值为0
 ```
-####在序列化类中，不要使用构造函数为final变量赋值。
+#### 在序列化类中，不要使用构造函数为final变量赋值。
 #### Integer.valueOf() -128~127是从对象池中取的。
-####接口中可以有实现
+#### 接口中可以有实现
 ```java
     interface A{
         void A();
@@ -125,24 +126,24 @@ String s = new String("哈哈哈")
 #### 集合默认申请长度 10
 为避免多次申请内存，最好指定初始容量
 #### 反序列化时构造函数不执行
-####ArrayList是动态数组；Vector是线程安全的动态数组
+#### ArrayList是动态数组；Vector是线程安全的动态数组
 #### 子列表是原始列表的视图
 ```java
     List list = new ArrayList<Object>(100);
     list.subList(20,30).clear;// 删除list中20~30位置的元素
 ```
 subList返回list的视图后，不能对list再进行修改，会报ConcurrentModificationException。可以用Collections.unmodifiableList 保护原list
-####垃圾回收
-#####（一）对象是否“已死”
+#### 垃圾回收
+#### #（一）对象是否“已死”
 1. 引用计数
 2. 可达性
-#####（二）垃圾收集算法
+#### #（二）垃圾收集算法
 1. 标记-清楚
 2. 复制
 3. 标记-整理
 
 _____
-###三、Android
+### 三、Android
 
 #### EditText输入法
 EditText 启动获得焦点会弹出 
@@ -304,7 +305,7 @@ android:descendantFocusability="blocksDescendants"加到 item 可以解决
 3. 发布者发布事件：EventBus.getDefault().post(new MsgEvent1("主线程发的消息1"));
 4. 取消订阅：EventBus.getDefault().unregister(this);
 
-####  启动Activity方法
+#### 启动Activity方法
 	
 		public static void actionStart(Context context, String data1, String data2) {
 			Intent intent = new Intent(context, SecondActivity.class);
@@ -314,7 +315,7 @@ android:descendantFocusability="blocksDescendants"加到 item 可以解决
 		}
 		
 		SecondActivity.actionStart(FirstActivity.this, "data1", "data2");
-####  确认窗口
+#### 确认窗口
 	private void showDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(
 				SellActivity.this);
@@ -348,7 +349,7 @@ android:descendantFocusability="blocksDescendants"加到 item 可以解决
 #### 小微商户两步导出数据库 
 	adb shell中：cp /data/data/com.hisense.pos.xwpos/databases/xwpos.db /sdcard
 	cmd中：		 adb pull  /sdcard/xwpos.db
-####  startActivityForResult 无法调用singleTask的Activity。
+#### startActivityForResult 无法调用singleTask的Activity。
 在B开启之后的瞬间（未等B返回任何result）,A的onActivityResult方法就会被调用,并且收到一个RESULT_CANCEL的request code。
 
 #### intent-filter 
@@ -361,7 +362,7 @@ android:descendantFocusability="blocksDescendants"加到 item 可以解决
 #### gettextsize返回像素单位
 setTextSize(int size)默认单位sp,可以使用setTextSize(type,size) type TypedValue.COMPLEX_UNIT_PX 限定。
 
-####  ListView嵌套ScrollView，重写LisctView 的 onMeasure 方法
+#### ListView嵌套ScrollView，重写LisctView 的 onMeasure 方法
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,MeasureSpec.AT_MOST);
 		super.onMeasure(widthMeasureSpec, expandSpec);
@@ -498,37 +499,37 @@ OkHttpClient.Builder builder = new OkHttpClient.Builder();
 ```
 #### 找不到layout 文件
 setContentView(R.layout.activity) 找不到R.layout.activity文件，但是R.layout.activity存在，可能与横竖屏有关。
-####微信分享
+#### 微信分享
 微信分享没有WXMediaMessage.title 和description 不能分享给朋友，只能分享到朋友圈。出现朋友列表，点击没反应。
-####View的位置参数
+#### View的位置参数
 x = left + translationX   
 y = top + translationY  
 width = right - left    
 height = bottom - top
-####MotionEvent
+#### MotionEvent
 getX/getY 相对于当前View左上角x和y;getRawX/getRawY 相对于手机屏幕左上角x和y.
-####TouchSlop滑动最小距离
+#### TouchSlop滑动最小距离
 get(getContext()).getScaledTouchSlop();
 #### onPause 和 onResume
 第一个activity的onPause执行完后，第二个activity的onResume才能执行，因此不要在onPause中执行耗时操作
 #### android:process
 android:process = ":remote" //当前应用的私有进程，xxx.xxx.xxx:remote,其他应用的组件不可以跟它跑在同一个进程中。
 android:process ="xxx.xxx.xxx.remote" //全局进程，其他应用通过ShareUID跟他跑在同一个进程中。（需要相同的签名）
-####Serializable 和 Parcelable
+#### Serializable 和 Parcelable
 Serializable  在反序列化的时候会检测serialVersionUID值，不相等报异常。serialVersionUID = 1L 系统会默认生成一个hash值。静态成员和 **transient**关键字标记的不参与序列化过程。
-####ThreadLocal
+#### ThreadLocal
 不同线程访问同一个ThreadLocal对象，获得的值是不一样的。
-####include 仅支持android:layout_*属性
+#### include 仅支持android:layout_*属性
 如果设置了android:layout_*属性，必须android:layout_height a 和ndroid:layout_width后才能生效。
-####在一项操作中混用基本类型和装箱类型，装箱类型会拆箱。
-####View滑动
+#### 在一项操作中混用基本类型和装箱类型，装箱类型会拆箱。
+#### View滑动
 1. View自身的scrollTo/scrollBy （只能将View中的内容进行移动，并不能将View本身移动）
 2. 通过动画 （View动画是对影像操作，如果结束后需要保留最终状态 需要有：android:fillAfter="true"，并且响应位置还是原区域;属性动画则不需要 注：）
 3. 改变View的LayoutParams
-####overridePendingTransition Activity的过渡动画，必须在startActivity 或 finish后调用才有效果。
-####无限循环的属性动画需要在Activity退出时及时停止，否则会内存泄露
-####View动画后setVisibility(View.GONE) 无效，需要用 view.clearAnimation()清除状态
-####Activity.getWindow.getDecorView() 可以获得 decor view
+#### overridePendingTransition Activity的过渡动画，必须在startActivity 或 finish后调用才有效果。
+#### 无限循环的属性动画需要在Activity退出时及时停止，否则会内存泄露
+#### View动画后setVisibility(View.GONE) 无效，需要用 view.clearAnimation()清除状态
+#### Activity.getWindow.getDecorView() 可以获得 decor view
 #### RxJava
 ```java
 _apiService.login(mobile, verifyCode)
@@ -586,14 +587,29 @@ compile(name:'camerascan-1.0', ext:'aar')
 #### SparseArray ArrayMap HashMap
 SparseArray 当key 是int时可以避免自动装箱
 ArrayMap 以时间换取空间，两个数组分别存key 和 value，空间占用比HashMap小，采用二分法查找，效率比hash低，不适用于大量数据。
-####耗时计算
+#### 耗时计算
 ```java
 start = System.nanoTime() 
 TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)+"毫秒"
 ```
 
-####Assert 正确使用方式
+#### Assert 正确使用方式
 ```java
 if(BuildConfig.DEBUG && !(ctx instanceof FragmentActivity))
       throw new RuntimeException();
 ```
+#### ImageView的scaleType
+
+Android中ImageView的scaleType有8个可选项
+
+1 matrix不对图片进行缩放，对原图从view的左上角绘制图片（图片不变形）；
+
+2 fitXY将图片全部绘制到view中，但是图片会变形；（图片变形，充满view）
+
+3 fitStart、fitCenter、fitEnd三个属性会选择图片的较长的边为基准对图片进行缩放处理，正因为如此，图片不会完全充满view，不同之处在于图片在view中绘制的锚点不同；（图片不变形，不能充满view）
+
+4 center不对图片进行缩放处理，选取view及图片的中心点进行绘制；（图片不变形）
+
+5 centerCrop会保证图片充满view，因此会选取图片中较短的边为基准做缩放处理；（图片不变形，充满view）
+
+6 centerInside保证图片显示在view中间，当图片大于view时，会选取图片较长的边为基准对图片进行缩小，当图片宽高小于view时，直接将图片显示到view中间。（图片不变形）

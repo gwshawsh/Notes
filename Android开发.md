@@ -181,11 +181,11 @@ String s = new String("哈哈哈")
 + #### ArrayList是动态数组；Vector是线程安全的动态数组
 
 + #### 子列表是原始列表的视图
-```java
-    List list = new ArrayList<Object>(100);
-    list.subList(20,30).clear;// 删除list中20~30位置的元素
-```
-subList返回list的视图后，不能对list再进行修改，会报ConcurrentModificationException。可以用Collections.unmodifiableList 保护原list
+		```java
+			List list = new ArrayList<Object>(100);
+			list.subList(20,30).clear;// 删除list中20~30位置的元素
+		```
+		subList返回list的视图后，不能对list再进行修改，会报ConcurrentModificationException。可以用Collections.unmodifiableList 保护原list
 
 + #### 垃圾回收
 

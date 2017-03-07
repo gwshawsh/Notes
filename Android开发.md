@@ -18,6 +18,7 @@ _____
 
 
 + #### 手机号
+
 ```java
     public static boolean isMobileNO(String mobiles) {
         Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\d])|(18[0-9]))\\d{8}$");
@@ -27,9 +28,8 @@ _____
 
 ```
 
-
-+ #### hahah
 _____
+
 ### 二、Java
 * ####  Java 非静态内部类会默认持有外部类的引用。
 
@@ -187,6 +187,7 @@ String s = new String("哈哈哈")
 subList返回list的视图后，不能对list再进行修改，会报ConcurrentModificationException。可以用Collections.unmodifiableList 保护原list
 
 + #### 垃圾回收
+
 ##### （一）对象是否“已死”
 1. 引用计数
 2. 可达性
@@ -706,8 +707,8 @@ start = System.nanoTime()
 TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)+"毫秒"
 ```
 
-
 + #### Assert 正确使用方式
+
 ```java
 if(BuildConfig.DEBUG && !(ctx instanceof FragmentActivity))
       throw new RuntimeException();

@@ -510,9 +510,9 @@ Activity的 theme 是透明（android:windowIsTranslucent）时，从其他栈Ac
 
 
 	```java
-	TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.IconText);
-	String leftText = a.getString(R.styleable.IconText_left_text);
-	a.recycle();
+		TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.IconText);
+		String leftText = a.getString(R.styleable.IconText_left_text);
+		a.recycle();
 	```
 
 + #### ImageView 变形

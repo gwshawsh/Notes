@@ -508,9 +508,9 @@ Activity的 theme 是透明（android:windowIsTranslucent）时，从其他栈Ac
 	```
 
 	```java
-		TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.IconText);
-		String leftText = a.getString(R.styleable.IconText_left_text);
-		a.recycle();
+	TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.IconText);
+	String leftText = a.getString(R.styleable.IconText_left_text);
+	a.recycle();
 	```
 
 + #### ImageView 变形
@@ -737,3 +737,9 @@ TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)+"毫秒"
 	5. enterCrop会保证图片充满view，因此会选取图片中较短的边为基准做缩放处理；（图片不变形，充满view）
 
 	6. enterInside保证图片显示在view中间，当图片大于view时，会选取图片较长的边为基准对图片进行缩小，当图片宽高小于view时，直接将图片显示到view中间。（图片不变形）
+
++ #### 点击响应错乱
+	当前layout中使用了自定义控件，如果当前layout中的id 与自定义控件布局中的id有重复，会导致点击响应错乱，并且编译器没有提示。
+
++ #### Error inflating class null
+view.inflate异常：Binary XML file line #34: Error inflating class null 原因：布局文件中<View/>组件应该为大写V

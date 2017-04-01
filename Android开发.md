@@ -743,3 +743,31 @@ TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)+"毫秒"
 
 + #### Error inflating class null
 view.inflate异常：Binary XML file line #34: Error inflating class null 原因：布局文件中<View/>组件应该为大写V
+
++ #### PendingIntent
+PendingIntent主要用于给RomoteViews添加点击事件，具有“粘滞性”。
+PendingIntent相同的判定标准
+		1. requestCode相同 
+		2. Intent相同
+Intent相同的判定
+ComponentName和intent-filter都相同（Extras不参与比较）
+PendingIntent 相同时的判定flags:
+	1. FlAG_ONE_SHOT 只能使用一次，相同PendingIntent send失败
+	2. FLAG_NO_CREATE 不会主动创建，如果不存在，工厂方法返回nul。较少使用
+	3. FLAG_CANCEN_CURRENT cancel当前已存在相同PendingIntent，点击无响应。新建PendingIntent
+	4. FLAG_UPDATE_CURRENT 存在相同PendingIntent，更新。
+	5. manager.notifu(id,notification)  id相同，每次只能弹出一个通知替换，无论PendingIntent是否相同。
+	id不同时，PendingIntent不同：新的通知。PendingIntent相同：FlAG_ONE_SHOT：相同的只能点击一个，其他失效。FLAG_CANCEN_CURRENT：最新的点击有效；FLAG_UPDATE_CURRENT：所有的都更新到最新的。
++ #### AppContext不能启动standard模式的 Activity
+standard模式的Activity启动会默认进入启动它的Activity所属栈，AppContext没有任务栈。可以用FLAG_ACTIVITY_NEW_TASK(singleTask)。singleTask模式如果当前没有任务栈（如：AppContext） ，系统会默认创建任务栈。
++ #### AndroidMenifest 和 Intent 设定 模式的区别
+ AndroidMenifest 不能设定FLAG_ACTIVITY_CLEAR_TOP 标识，Intent不能指定 singleInstance模式
++ #### 获取系统的一些资源com.android.internal.R.drawable.ic_text_dot等
+ int id = Resources.getSystem().getIdentifier("ic_text_dot", "drawable", "android")
+ 
+ + #### onStart、onResume区别
+ onStart——Activity是否可见 onResume——Activity是否位于前台
+ + #### onCreate 和 onSaveInstanceState区别
+  onCreate 需要判空。onSaveInstanceState区别一定有值。
+ + #### 添加 configChanges属性后，当发生相似情况，不会重建Activity，会调用onConfigurationChanged
+ + #### 一个Activity可以有多个intent-filter 

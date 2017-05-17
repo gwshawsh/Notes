@@ -197,7 +197,18 @@ String s = new String("哈哈哈")
 	1. 标记-清楚
 	2. 复制
 	3. 标记-整理
++ #### 单例
+除枚举单例外，其他五种单例模式都可以以反序列化的方式重新生成对象。要重新方法
+```java
+private Object readResolve(){
+	return instance;
+}
+```
++ #### Builder模式的优点
+1. 避免要构造的对象暴露过多不相关接口
+2. 可以保持一致性（某些属性建立后不能随意修改，将配置分离）
 
++ #### Cloneable实现拷贝时，构造函数不会执行。（clone 是内存中二进制流的拷贝）
 _____
 ### 三、Android
 
@@ -771,3 +782,30 @@ standard模式的Activity启动会默认进入启动它的Activity所属栈，Ap
   onCreate 需要判空。onSaveInstanceState区别一定有值。
  + #### 添加 configChanges属性后，当发生相似情况，不会重建Activity，会调用onConfigurationChanged
  + #### 一个Activity可以有多个intent-filter 
+android:onClick="onclick",onclick这个函数只能在Activity中，在Fragment中无效；需要包含View参数：onclick(View v)
+ + #### Handler 原理
+ 一、处理msg的顺序：
+		 1、msg的callback   handler.post(callback)
+		 2、mCallback  创建Handler的时候可以传 mCallback参数  new Handler(mCallback)
+		 3、handler自身的handleMessage(msg) 函数 （可以重写）
+二、ThreadLocal
+线程有个内部对象ThreadLocalMap，其中 有Entry[] table数组，用来存贮线程私有对象。Android25源码中并不是Android开发艺术探索中所说的table数组奇数位存key，key的下一位置存value。而是table数组中统一存Entry，entry中存value。
+```java
+ static class Entry extends WeakReference<ThreadLocal> {
+            /** The value associated with this ThreadLocal. */
+            Object value;
+
+            Entry(ThreadLocal k, Object v) {
+                super(k);
+                value = v;
+            }
+        }
+```
+三、理解
+	 Handler实现线程间的通信本质是以共享内存的方式实现的。Handler持有Looper，Looper中有MessageQueue。Looper是线程以ThreadLocal的方式持有的。线程A向线程B发送Msg，本质是通过Handler将Msg添加到B的Looper的MessageQueue中。循环取出并处理消息。（Msg中通过target持有Handler的引用，处理消息时，调用Handler的dispatchMessage(Message msg) 根据（一）中处理msg的顺序处理）
+ + #### EditText不弹出输入法，常规方法都尝试后看一下是否EditText控件的初始大小是0了
+ + #### 在singleTop 和 singleInstance 的Activity中startActivityForResult()启动另一个Activity会直接返回Activity.RESULT_CANCELED。由于Framework层做了限制，Android开发者认为不同Task默认不能传递数据，一定要传递只能通过Intent。
+ + #### 以FLAG_ACTIVITY_NO_HISTORY模式启动的， 不会保留在Activity中。
+ + #### IntentService
+ onCreate()的时候开启一个HandlerThread，接收到start命令后传递命令给HandlerThread 的Handler，Handler调用onHandleIntent方法处理任务后调用stopSelf结束Service。
+ + ####WebView上传文件，选择文件返回后以postDelayed的方式上传。猜测，返回到WebView的Activity时WebView可能需要重新进行某些工作，在此之前操作无响应。
